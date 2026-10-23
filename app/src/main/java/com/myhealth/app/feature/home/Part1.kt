@@ -13,13 +13,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.myhealth.app.R
 import com.myhealth.app.data.Repo
 import com.myhealth.app.feature.assistant.AiInsights
-import com.myhealth.app.feature.assistant.AssistantContext
+import com.myhealth.app.feature.assistant.AssistantContexts
 import com.myhealth.app.feature.profile.Avatar
 import com.myhealth.app.nav.LocalNav
 import com.myhealth.app.nav.Route
@@ -78,9 +79,10 @@ internal fun HomeHeader(modifier: Modifier = Modifier) {
 @Composable
 internal fun AiTipCard(modifier: Modifier = Modifier) {
     val nav = LocalNav.current
+    val ctx = LocalContext.current
     val profile by Repo.profile.collectAsState()
     val workouts by Repo.workouts.collectAsState()
-    val tip = remember(profile, workouts) { homeTip().trim() }
+    val tip = remember(profile, workouts) { homeTip(ctx).trim() }
     val shown = if (tip.isEmpty()) t("home.ai.wait") else tip
     Box(modifier = modifier.fillMaxWidth()) {
         Image(
@@ -110,8 +112,8 @@ internal fun AiTipCard(modifier: Modifier = Modifier) {
     }
 }
 
-// DOGRULA: AssistantContext kurucusu bilinmiyor (feature/assistant); parametre gerekiyorsa burada uyarlayin.
-private fun homeTip(): String = AiInsights.dailyTip(AssistantContext())
+// AssistantContexts.build(ctx) tum zorunlu parametreleri otomatik doldurur.
+private fun homeTip(ctx: android.content.Context): String = AiInsights.dailyTip(AssistantContexts.build(ctx))
 
 // Ana sayfa kartlarinin ortak cam cercevesi: ust satirda ikon ve baslik, altinda icerik.
 @Composable

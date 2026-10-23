@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.myhealth.app.core.CrashLog
+import com.myhealth.app.util.CrashLog
 import com.myhealth.app.feature.fasting.FastingInfo
 import com.myhealth.app.feature.fasting.FastingPlan
 import com.myhealth.app.ui.kit.HGap
@@ -36,7 +36,7 @@ fun HomeScreen() {
         try {
             FastingPlan.today(ctx)
         } catch (e: Exception) {
-            // DOGRULA: CrashLog paketi (com.myhealth.app.core) varsayildi.
+            // CrashLog paketi: com.myhealth.app.util
             CrashLog.note(ctx, "home_fasting", e)
             null
         }

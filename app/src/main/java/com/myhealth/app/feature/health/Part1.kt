@@ -6,6 +6,7 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -108,7 +109,7 @@ internal fun FinishCelebration(onFinished: () -> Unit, modifier: Modifier = Modi
                 style = Stroke(width = stroke * 3f, cap = StrokeCap.Round)
             )
             drawArc(
-                color = Lux.gold.copy(alpha = g),
+                color = Lux.gold.copy(alpha = g.coerceIn(0f, 1f)),
                 startAngle = ringAngle,
                 sweepAngle = 110f,
                 useCenter = false,
