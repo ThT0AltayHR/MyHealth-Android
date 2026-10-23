@@ -1,0 +1,2 @@
+-keep class com.myhealth.app.data.** { *; }
+-dontwarn okhttp3.**

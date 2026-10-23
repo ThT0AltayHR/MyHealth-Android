@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+ sistem acilis ekrani: tamamen seffaf ikon + siyah zemin. -->
+    <style name="Theme.MyHealth" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/lux_black</item>
+        <item name="android:colorBackground">@color/lux_black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowSplashScreenBackground">@color/lux_black</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_empty</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+    </style>
+</resources>
